@@ -83,6 +83,7 @@ export const NavElement = () => {
       <StringWrapper>
         <String>Our Company</String>
       </StringWrapper>
+      {isHovered ?? null}
     </ButtonWrapper>
   );
 };
