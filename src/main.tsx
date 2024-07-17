@@ -10,16 +10,16 @@ import { Navbar } from "./Components/navbar.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/CocaCola-Clone-Coding",
     element: <Navbar />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
+        path: "/CocaCola-Clone-Coding",
         element: <Home />,
       },
       {
-        path: "/introduce",
+        path: "/CocaCola-Clone-Coding/introduce",
         element: <Introduce />,
       },
     ],
@@ -38,6 +38,7 @@ const GlobalStyles = createGlobalStyle`
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   height: 100vh;
   justify-content: center;
 `;

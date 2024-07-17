@@ -4,12 +4,14 @@ import { NavElement } from "./nav-element";
 import logo from "../assets/cocacolaLogo.png";
 
 const NavbarWrapper = styled.div`
-  width: 1280px;
+  max-width: 1280px;
+  width: 100%;
   height: 80px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 20px;
+  margin: auto;
 `;
 
 const Nav = styled.nav`
@@ -22,12 +24,7 @@ const NavUl = styled.ul`
   display: flex;
   flex-direction: row;
   gap: 10px;
-`;
-
-const Brand = styled.div`
-  display: flex;
   align-items: center;
-  margin: 0 20px;
 `;
 
 const Logo = styled.img`
@@ -39,6 +36,7 @@ const BrandLink = styled(Link)`
   text-decoration: none;
   color: black;
   font-weight: bold;
+  margin: 0 20px;
 `;
 
 export const Navbar = () => {
@@ -50,12 +48,28 @@ export const Navbar = () => {
         </Link>
         <Nav>
           <NavUl>
-            <Brand>
-              <BrandLink to="/">Brands</BrandLink>
-            </Brand>
-            <NavElement />
-            <NavElement />
-            <NavElement />
+            <BrandLink to="#">Brands</BrandLink>
+            <NavElement
+              menuString="Our Company"
+              subMenuStringOne="Coca-Cola Company"
+              subMenuStringTwo="Since 1886"
+              subMenuUrlOne={"#"}
+              subMenuUrlTwo={"#"}
+            />
+            <NavElement
+              menuString="Discover"
+              subMenuStringOne="Brand Story"
+              subMenuStringTwo="Original"
+              subMenuUrlOne={"#"}
+              subMenuUrlTwo={"#"}
+            />
+            <NavElement
+              menuString="Impact"
+              subMenuStringOne="Sustainability"
+              subMenuStringTwo="Social"
+              subMenuUrlOne={"#"}
+              subMenuUrlTwo={"#"}
+            />
           </NavUl>
         </Nav>
       </NavbarWrapper>

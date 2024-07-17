@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { act, useState } from "react";
+import { Link, To } from "react-router-dom";
 import styled from "styled-components";
 
 const ButtonWrapper = styled.li`
@@ -15,28 +16,23 @@ const ButtonWrapper = styled.li`
   &:after {
     content: ">";
     font-size: 24px;
+    margin-bottom: 5px;
     transition: transform 0.3s ease-in-out;
   }
 
   &:not(:hover) {
     &::after {
-      transform: rotate(0) translateY();
+      transform: rotate(0);
     }
   }
 
   &:hover {
     &::after {
-      transform: rotate(90deg);
+      transform: rotate(90deg) translateX(5px);
     }
   }
-`;
 
-const StringWrapper = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  &:after {
+  &:before {
     position: absolute;
     content: "";
     left: 0;
@@ -48,16 +44,23 @@ const StringWrapper = styled.div`
   }
 
   &:not(:hover) {
-    &::after {
+    &::before {
       transform: scale(0) translateY(-3px);
     }
   }
 
   &:hover {
-    &::after {
+    &::before {
       transform: scale(1) translateY(-3px);
     }
   }
+`;
+
+const StringWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const String = styled.p`
@@ -65,14 +68,64 @@ const String = styled.p`
   font-size: 15px;
 `;
 
-export const NavElement = () => {
+const SubMenu = styled.ul`
+  width: max-content;
+  height: auto;
+  background-color: white;
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  padding: 32px;
+  :first-child {
+    margin-bottom: 8px;
+  }
+`;
+
+const MenuElement = styled.li`
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  font-weight: 700px;
+  letter-spacing: 1px;
+`;
+
+const SubMenuLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+
+  &:after {
+    visibility: hidden;
+    content: ">";
+    font-size: 20px;
+    margin-left: 5px;
+  }
+
+  &:hover {
+    font-weight: bold;
+    &::after {
+      visibility: visible;
+    }
+  }
+`;
+
+export const NavElement = ({
+  menuString,
+  subMenuStringOne,
+  subMenuStringTwo,
+  subMenuUrlOne,
+  subMenuUrlTwo,
+}: {
+  menuString: String;
+  subMenuStringOne: String;
+  subMenuStringTwo: String;
+  subMenuUrlOne: To;
+  subMenuUrlTwo: To;
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => {
-    console.log("Hovered");
     setIsHovered(true);
   };
   const handleMouseLeave = () => {
-    console.log("Hovered");
     setIsHovered(false);
   };
   return (
@@ -81,9 +134,22 @@ export const NavElement = () => {
       onMouseLeave={handleMouseLeave}
     >
       <StringWrapper>
-        <String>Our Company</String>
+        <String>{menuString}</String>
       </StringWrapper>
-      {isHovered ?? null}
+      {isHovered ? (
+        <SubMenu>
+          <MenuElement>
+            <SubMenuLink to={subMenuUrlOne} title="a">
+              {subMenuStringOne}
+            </SubMenuLink>
+          </MenuElement>
+          <MenuElement>
+            <SubMenuLink to={subMenuUrlTwo} title="a">
+              {subMenuStringTwo}
+            </SubMenuLink>
+          </MenuElement>
+        </SubMenu>
+      ) : null}
     </ButtonWrapper>
   );
 };
