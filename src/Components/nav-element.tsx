@@ -1,4 +1,4 @@
-import { act, useState } from "react";
+import { useState } from "react";
 import { Link, To } from "react-router-dom";
 import styled from "styled-components";
 
@@ -37,7 +37,7 @@ const ButtonWrapper = styled.li`
     content: "";
     left: 0;
     top: 100%;
-    width: 100%;
+    width: calc(100% - 25px);
     height: 3px;
     background-color: black;
     transition: transform 0.3s;
@@ -69,6 +69,7 @@ const String = styled.p`
 `;
 
 const SubMenu = styled.ul`
+  z-index: 1;
   width: max-content;
   height: auto;
   background-color: white;
@@ -82,8 +83,6 @@ const SubMenu = styled.ul`
 `;
 
 const MenuElement = styled.li`
-  position: relative;
-  z-index: 1;
   font-size: 12px;
   font-weight: 700px;
   letter-spacing: 1px;
@@ -101,7 +100,7 @@ const SubMenuLink = styled(Link)`
   }
 
   &:hover {
-    font-weight: bold;
+    text-shadow: 0px 0px 1px black;
     &::after {
       visibility: visible;
     }

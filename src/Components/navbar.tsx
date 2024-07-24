@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { NavElement } from "./nav-element";
 import logo from "../assets/cocacolaLogo.png";
 
+const Header = styled.header`
+  background-color: white;
+`;
+
 const NavbarWrapper = styled.div`
   max-width: 1280px;
   width: 100%;
@@ -12,6 +16,7 @@ const NavbarWrapper = styled.div`
   align-items: center;
   gap: 20px;
   margin: auto;
+  background-color: white;
 `;
 
 const Nav = styled.nav`
@@ -41,7 +46,7 @@ const BrandLink = styled(Link)`
 
 export const Navbar = () => {
   return (
-    <>
+    <Header>
       <NavbarWrapper>
         <Link to="#">
           <Logo src={logo} alt="cocacola logo" />
@@ -73,7 +78,6 @@ export const Navbar = () => {
           </NavUl>
         </Nav>
       </NavbarWrapper>
-      <Outlet />
-    </>
+    </Header>
   );
 };
