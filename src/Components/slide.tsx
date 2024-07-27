@@ -71,6 +71,9 @@ const ContentButton = styled.div`
   width: 280px;
   height: 40px;
   background-color: white;
+  &:hover {
+    background-color: #eeeeee;
+  }
 `;
 
 const Button = styled.a`
