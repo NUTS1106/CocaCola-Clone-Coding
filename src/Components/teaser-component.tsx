@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { LearnMoreButton } from "./learn-more-button";
+import { useEffect, useRef, useState } from "react";
 
 const TeaserWrapper = styled.section`
   margin-top: 120px;
@@ -72,7 +73,15 @@ const Picture = styled.picture`
   justify-content: center;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  transition: opacity 0.1s ease-in-out;
+  &.scrolled {
+    opacity: 1;
+  }
+  &.unscrolled {
+    opacity: 0;
+  }
+`;
 
 export const TeaserCompnent = ({
   onRight,
@@ -85,6 +94,26 @@ export const TeaserCompnent = ({
   title: string;
   description: string;
 }) => {
+  const [firstScrolled, setFirstScrolled] = useState(false);
+  const [secondScrolled, setSecondScrolled] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    if (window.scrollY >= 300) {
+      setFirstScrolled(true);
+    }
+    if (window.scrollY >= 1000) {
+      setSecondScrolled(true);
+    }
+    if (secondScrolled === true) {
+      window.removeEventListener("scroll", handleScroll);
+    }
+  };
   return (
     <TeaserWrapper>
       <TeaserComponentWrapper>
@@ -96,11 +125,17 @@ export const TeaserCompnent = ({
                 <Description>{description}</Description>
               </Content>
 
-              <LearnMoreButton />
+              <LearnMoreButton string="자세히 보기" />
             </ContentWrapper>
             <ImageWrapper style={{ right: `8.3333333333%` }}>
               <Picture>
-                <Image src={url} width="1280" height="1024" />
+                <Image
+                  className={firstScrolled ? "scrolled" : "unscrolled"}
+                  onScroll={handleScroll}
+                  src={url}
+                  width="1280"
+                  height="1024"
+                />
               </Picture>
             </ImageWrapper>
           </>
@@ -108,7 +143,13 @@ export const TeaserCompnent = ({
           <>
             <ImageWrapper>
               <Picture>
-                <Image src={url} width="1280" height="1024" />
+                <Image
+                  className={secondScrolled ? "scrolled" : "unscrolled"}
+                  onScroll={handleScroll}
+                  src={url}
+                  width="1280"
+                  height="1024"
+                />
               </Picture>
             </ImageWrapper>
             <ContentWrapper style={{ right: `8.3333333333%` }}>
@@ -117,7 +158,7 @@ export const TeaserCompnent = ({
                 <Description>{description}</Description>
               </Content>
 
-              <LearnMoreButton />
+              <LearnMoreButton string="자세히 보기" />
             </ContentWrapper>
           </>
         )}

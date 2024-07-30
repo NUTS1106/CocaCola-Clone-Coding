@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { TeaserCompnent } from "./teaser-component";
 
-const TeaserWrapper = styled.section`
-  margin-bottom: 200px;
-`;
+const TeaserWrapper = styled.section``;
 
 export const Teaser = () => {
   return (

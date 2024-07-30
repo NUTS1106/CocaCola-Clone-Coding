@@ -24,10 +24,10 @@ const ButtonLink = styled(Link)`
   color: black;
 `;
 
-export const LearnMoreButton = () => {
+export const LearnMoreButton = ({ string }: { string: string }) => {
   return (
     <Button>
-      <ButtonLink to="#">자세히 보기</ButtonLink>
+      <ButtonLink to="#">{string}</ButtonLink>
     </Button>
   );
 };
