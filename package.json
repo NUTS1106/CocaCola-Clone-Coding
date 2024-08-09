@@ -10,10 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@flaticon/flaticon-uicons": "^3.3.1",
     "axios": "^1.7.2",
+    "lodash": "^4.17.21",
     "pexels": "^1.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1",
     "react-router-dom": "^6.24.1",
     "styled-components": "^6.1.11",
     "styled-reset": "^4.5.2"

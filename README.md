@@ -66,3 +66,13 @@ brand 컴포넌트 구현, teaser 컴포넌트 스크롤시 나타나는 애니�
 brand 컴포넌트는 array의 map 함수를 사용해서 쉽게 구현할 수 있었다 또한, inset과 margin-inline 속성을 사용해보면서 margin에 음수값을 줘봤는데
 margin에 음수값을 주게 되면 margin-top과 margin-left 는 해당 요소를 음수값만큼 이동하게 된다
 margin-right와 margin-bottom은 해당 요소의 다음에 오는 요소들을 음수값만큼 해당 요소 쪽으로 끌어당긴다
+
+
+2024/08/09
+반응형 navbar 구현을 위해서 브라우저가 resizing 되면 resizing을 감지하여 일정 width보다 작아지면 hamburger버튼이 등장하고 기존에 navbar에 있던 nav 컴포넌트를 보이지 않게 해야했다 
+하지만 이상하게 브라우저의 너비가 1200px보다 작아지게 되면 nav컴포넌트는 보이지 않게 되고 hamburger 버튼만 보여야 하는데 nav컴포넌트가 브라우저 너비를 줄이던 늘이던 hamburger 버튼을
+누르던 안누르던 계속해서 nav컴포넌트가 보였다 먼저 원인을 파악하기 위해서 console.log로 콘솔에 실행되는 함수를 출력해보았는데 아무 문제가 없었다 그래서 든 생각이 state가 변화하면서
+재렌더링을 하는데 재렌더링을 하는 과정에서 또 state가 변하면서 다시 렌더링 돼 state가 기본값으로 초기화 되면서 변화하지 않는 것이였다 이러한 생각으로 state의 상태를 추적하다보니 
+이러한 과정이 그대로 일어나고 있는 것을 찾아냈고 useEffect를 통해서 state가 변화하더라도 항상 rendering이 되지 않게 수정하였다
+
+또한 반응형 웹을 구현해보면서 미디어 쿼리의 기본적인 문법에 대해서도 이해할 수 있었다
